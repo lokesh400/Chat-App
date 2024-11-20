@@ -100,5 +100,5 @@ app.get('/',ensureAuthenticated, async (req, res) => {
 
 
 Server = app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
-socketHandler(io);
 const io = socketIO(Server);
+socketHandler(io);
