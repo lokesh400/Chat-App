@@ -12,15 +12,15 @@ const socketIO = require('socket.io');
 
 const User = require('./models/User');
 
+const userrouter = require("./routes/user.js");
 const otprouter = require("./routes/otp.js");
 const chatsrouter = require("./routes/chats.js");
-const userrouter = require("./routes/user.js");
 const socketHandler = require('./routes/socketHandler');
 
 const app = express();
-const port = 1555;
+const port = 8000;
 
-
+const { error } = require("console");
 
 // Connect to MongoDB
 mongoose.connect(process.env.mongo_url);
@@ -55,6 +55,7 @@ const sessionOptions = {
     httpOnly: true,
   }
 }
+
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -92,11 +93,11 @@ app.use("/user",userrouter);
 app.use("/user",otprouter);
 app.use("/",chatsrouter);
 
-app.get('/',ensureAuthenticated, async (req, res) => {
-  const users = await User.find(); // Fetch all users
-  res.render('./chats/dashboard', { users });
-});
 
+ app.get('/',ensureAuthenticated, async (req, res) => {
+    const users = await User.find(); // Fetch all users
+    res.render('./chats/dashboard', { users });
+  });
 
 const Server = app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
 const io = socketIO(Server);
