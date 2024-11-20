@@ -1,6 +1,5 @@
 const express = require("express");
 require('dotenv').config();
-const http = require('http');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
@@ -19,7 +18,7 @@ const userrouter = require("./routes/user.js");
 const socketHandler = require('./routes/socketHandler');
 
 const app = express();
-const port = 8000;
+const port = 1555;
 
 
 
@@ -99,6 +98,6 @@ app.get('/',ensureAuthenticated, async (req, res) => {
 });
 
 
-Server = app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
+const Server = app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
 const io = socketIO(Server);
 socketHandler(io);
