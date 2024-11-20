@@ -20,8 +20,8 @@ const socketHandler = require('./routes/socketHandler');
 
 const app = express();
 const port = 8000;
-const server = http.createServer(app);
-const io = socketIO(server);
+
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.mongo_url);
@@ -98,5 +98,7 @@ app.get('/',ensureAuthenticated, async (req, res) => {
   res.render('./chats/dashboard', { users });
 });
 
+
+Server = app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
 socketHandler(io);
-server.listen(port, () => console.log(`Server running on http://localhost:${port}`));
+const io = socketIO(Server);
