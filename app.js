@@ -18,7 +18,7 @@ const chatsrouter = require("./routes/chats.js");
 const socketHandler = require('./routes/socketHandler');
 
 const app = express();
-const port = 8000;
+const port = 8080;
 
 const { error } = require("console");
 
