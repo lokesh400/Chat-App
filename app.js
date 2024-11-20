@@ -23,7 +23,11 @@ const port = 8080;
 const { error } = require("console");
 
 // Connect to MongoDB
-mongoose.connect(process.env.mongo_url);
+try{
+  mongoose.connect(process.env.mongo_url);
+}catch(error){
+  console.log(error)
+}
 
 // Middleware
 app.use(bodyParser.json());
