@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/styles/userDetails.css">
+</head>
+<body>
+
+    <main>
+        <section id="profile">
+            <div id="my-img">
+                <img src="/images/logo.png" alt="">
+            </div>
+            <div id="personal-info">
+                <p><b><%= currUser.name %></b></p>
+                <p style="margin-top: 0px;"><%= currUser.email %></p>
+            </div>
+        </section>
+
+        <section id="user-info">
+            <p><b>Name:</b> <%=currUser.name%></p>
+            <p><b>Email:</b> <%=currUser.email%></p>
+            <p><b>Ph.No:</b> <%=currUser.contactNumber%></p>
+            <p><a href="/user/forget-password" style="text-decoration: none; padding: 8px; color: #333; background-color:rgba(255, 8, 0, 0.781); border-radius: 10px; width: 100px; margin-left: calc(50% - 75px); margin-bottom: 10px; ">Reset Password</a></p>
+        </section>
+    
+        <section id="support">
+           
+                <h6 id="contact"><i class="fas fa-comments" style="color: blue;"></i><a href="#" style="text-decoration: none; color: black;" > Live Support</a></h6>
+                <h6 id="contact"><i class="fas fa-address-book" style="color: blue;"></i><a href="/user/support" style="text-decoration: none; color: black;" > Contact Us</a></h6>
+           
+        </section>
+        
+        <section id="footer">
+            <div id="social-media">
+                <div>
+                    <h6 style="margin: auto; text-align: center; margin-top: 10px; margin-bottom: 10px;">Join Our Community</h6>
+                </div>
+                <div style="display: flex; justify-content: space-around;">
+                <a href=""><i class="fab fa-facebook-f"></i></a>
+                <a href=""><i class="fab fa-twitter"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+    
+            <div id="sign-out">
+                <i class="fas fa-sign-out-alt" style="color:black;"><a href="/user/logout" style="color: black; text-decoration: none;">Log Out</a></i>
+            </div>
+        </section>
+    </main>
+    
+</body>
+</html>

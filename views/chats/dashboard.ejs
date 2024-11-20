@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="title">The Test Pulse</div>
+    <div class="icons">
+      <i class="fas fa-camera"></i>
+      <i class="fas fa-search"></i>
+      <a href="/user/info"><i class="fas fa-ellipsis-v"></i></a>
+    </div>
+  </div>
+
+  <!-- Main content section -->
+  <div class="main-content">
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input id="searchInput" placeholder="Search..." type="text"/>
+    </div>
+
+    <!-- Chat List -->
+    <div class="chat-list" id="studentList">
+      <% users.forEach(user => { %>
+        <div class="chat-item" data-name="<%= user.email %>" onclick="startChat('<%= user.email %>')">
+          <img alt="User avatar" src="https://storage.googleapis.com/a1aa/image/ofht1dek4Hu7hEcTarCDVBC9YhFjVqkGp0o7NOGA4oWBpxyTA.jpg" width="50"/>
+          <span class="chat-name"><%= user.name %></span>
+        </div>
+      <% }); %>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <i class="fas fa-comment-dots active"></i>
+    <i class="fas fa-clock"></i>
+    <i class="fas fa-users"></i>
+    <i class="fas fa-phone"></i>
+  </div>
+
+  <script>
+    function startChat(recipientEmail) {
+      window.location.href = `/chat?recipient=${recipientEmail}`;
+    }
+
+        const searchInput = document.getElementById('searchInput');
+        const studentList = document.getElementById('studentList');
+        const cards = studentList.getElementsByClassName('chat-item');
+
+        searchInput.addEventListener('keyup', function() {
+            const filter = searchInput.value.toLowerCase();
+
+            for (let i = 0; i < cards.length; i++) {
+                const card = cards[i];
+                const name = card.getAttribute('data-name');
+
+                if (name.includes(filter)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        });
+  </script>
+
+</body>
+</html>
