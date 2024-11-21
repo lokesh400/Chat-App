@@ -1,4 +1,3 @@
-
 const express = require("express");
 const router =  express.Router();
 const Message = require('../models/Message');
@@ -24,7 +23,6 @@ const User = require('../models/User');
 router.get('/chat',ensureAuthenticated, async (req, res) => {
   const { recipient } = req.query;
   const sender = req.user.email; // Assuming `currUser.email` is set as `req.user.email` after login
-
   // Fetch all messages between sender and recipient
   const messages = await Message.find({
     $or: [
@@ -58,6 +56,24 @@ router.delete('/clear-chat', async (req, res) => {
   
     res.status(200).send('Chat history cleared');
   });
+
+// Delete message by ID
+router.delete('/delete-message', async (req, res) => {
+  const messageId = req.query.id;
+  console.log(messageId)
+  
+  try {
+    const deletedMessage = await Message.findByIdAndDelete(messageId);
+    if (deletedMessage) {
+      res.json({ success: true });
+    } else {
+      res.status(404).json({ success: false, message: 'Message not found' });
+    }
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
+
   
 
 module.exports = router;
